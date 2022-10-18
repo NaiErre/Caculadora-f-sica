@@ -1,3 +1,5 @@
+import math
+
 print ("CALCULADORA FÍSICA PARA TIROS")
 TipoTiro = int(input(
     '''¿Qué tipo de tiro va a querer calcular?
@@ -6,6 +8,7 @@ TipoTiro = int(input(
      3. TIRO OBLICUO
      4. TIRO HORIZONTAL
      Seleccione un número del 1 al 4: '''))
+
 print ("*La gravedad en todos los casos será de 9,8 m/s2*") 
 GRAVEDAD = (-9.8)   
 
@@ -13,7 +16,7 @@ if TipoTiro == 1:
     def pedirdatosV():
         global velinicialV, graficarV, altinicialV
         velinicialV = float(input("Ingrece la velocidad inicial del objeto (m/s): "))
-        altinicialV = float(input("Ingrece la altura inicial: "))
+        altinicialV = float(input("Ingrece la altura inicial (m): "))
         graficarV = input("¿Desea graficar los datos una vez terminado el ejercicio? s/n: ")
 
     pedirdatosV()
@@ -23,20 +26,58 @@ if TipoTiro == 1:
         alturamaxV = altinicialV + velinicialV * tiempomaxV + 1/2 * GRAVEDAD * tiempomaxV**2
 
     calculosV()
-    print ("La altura máxima fué de: ", alturamaxV, " metros. El tiempo que tardó el objeto en llegar a la altura máxima fué de: ", tiempomaxV, " segundos.")
+    print ("La altura máxima fué de: ", round(alturamaxV, 2), "m \nEl tiempo que tardó el objeto en llegar a la altura máxima fué de: ", round(tiempomaxV, 2), "s")
 
 elif TipoTiro == 2:
     def pedirdatosL():
         global alturaL, velinicialL
-        alturaL = float(input("Ingrese la altura de la que cae el objeto: "))
-        velinicialL = float(input("Ingrese la velocidad inicial del objeto: "))
+        alturaL = float(input("Ingrese la altura de la que cae el objeto (m): "))
+        velinicialL = float(input("Ingrese la velocidad inicial del objeto (m/s): "))
 
     pedirdatosL()
     def calculosL():
         global tiempoL, velfinalL
-        tiempoL = alturaL + velinicialL * tiempoL + 1/2 + GRAVEDAD * tiempoL ** 2 = 0
+        tiempoL = (-velinicialL - ((velinicialL)**2 - 4 * (-4.9) * alturaL)**(1/2))/(2 * (-4.9))
+        print (velinicialL, tiempoL, alturaL)
         velfinalL = velinicialL + GRAVEDAD + tiempoL
     
     calculosL()
 
-    print ("El tiempo que tardó el objeto en caer fué de: ", tiempoL, ". La velocidad máxima que alcanzó fué de: ", velfinalL)
+    print ("El tiempo que tardó el objeto en caer fué de: ", round(tiempoL, 2), "s \nLa velocidad máxima que alcanzó fué de: ", round(velfinalL, 2), "m/s")
+
+elif TipoTiro == 3:
+    def pedirdatosO():
+        global velinicialO , anguloO
+        velinicialO = float(input("Ingrese la velocidad inicial del objeto (m/s): "))
+        anguloO = float(input("Ingrese el ángulo de la rampa: "))
+
+    pedirdatosO()
+    def calculosO():
+        global velxO, velyO, tiempomaxO, tiempototO, distanciaxO, alturamaxyO
+        velxO = velinicialO * math.cos(math.radians(anguloO))
+        velyO = velinicialO * math.sin(math.radians(anguloO))
+        tiempomaxO = velyO / (-GRAVEDAD)
+        tiempototO = tiempomaxO * 2
+        distanciaxO = velxO * tiempototO
+        alturamaxyO = velyO * tiempomaxO + (1/2) * (GRAVEDAD) * tiempomaxO** 2
+
+    calculosO()
+    print ("El tiempo que tarda el objeto en llegar a la altura máx es de: ", round(tiempomaxO, 2), "s \nEl tiempo que tarda el objeto en caer es de: ", round(tiempototO, 2), "s")
+    print ("La distancia recorrida por el objeto fué de: ", round(distanciaxO, 2), "m \nLa altura máxima alcanzada por el objeto fué de: ", round(alturamaxyO, 2), "m")
+
+elif TipoTiro == 4:
+    def pedirdatosH():
+        global velinicialxH, alturainicialH
+        velinicialxH = float(input("Ingrese la velocidad inicial del objeto (m/s): "))
+        alturainicialH = float(input("Ingrese la altura desde la que se lanza el objeto (m): "))
+
+    pedirdatosH()
+    def calculosH():
+        global tiempocaidaH, distanciaxH
+        tiempocaidaH = (alturainicialH / 4.9)**(1/2)
+        distanciaxH = velinicialxH * tiempocaidaH
+
+    calculosH()
+    print ("El tiempo que tardó el objeto en caer fué de: ", round(tiempocaidaH, 2), "s \nLa distancia recorrida por el objeto fué de: ", round(distanciaxH, 2), "m")
+
+   
