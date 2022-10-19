@@ -15,9 +15,8 @@ GRAVEDAD = (-9.8)
 if TipoTiro == 1:
     def pedirdatosV():
         global velinicialV, graficarV, altinicialV
-        velinicialV = float(input("Ingrece la velocidad inicial del objeto (m/s): "))
-        altinicialV = float(input("Ingrece la altura inicial (m): "))
-        graficarV = input("¿Desea graficar los datos una vez terminado el ejercicio? s/n: ")
+        velinicialV = float(input("Ingrese la velocidad inicial del objeto (m/s): "))
+        altinicialV = float(input("Ingrese la altura inicial (m): "))
 
     pedirdatosV()
     def calculosV():
@@ -38,7 +37,6 @@ elif TipoTiro == 2:
     def calculosL():
         global tiempoL, velfinalL
         tiempoL = (-velinicialL - ((velinicialL)**2 - 4 * (-4.9) * alturaL)**(1/2))/(2 * (-4.9))
-        print (velinicialL, tiempoL, alturaL)
         velfinalL = velinicialL + GRAVEDAD + tiempoL
     
     calculosL()
