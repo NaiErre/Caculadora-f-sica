@@ -1,4 +1,5 @@
 import math
+import matplotlib.pyplot as plt
 
 print ("CALCULADORA FÍSICA PARA TIROS")
 TipoTiro = int(input(
@@ -23,9 +24,25 @@ if TipoTiro == 1:
         global tiempomaxV, alturamaxV
         tiempomaxV = velinicialV / (-GRAVEDAD)
         alturamaxV = altinicialV + velinicialV * tiempomaxV + 1/2 * GRAVEDAD * tiempomaxV**2
-
     calculosV()
+
     print ("La altura máxima fué de: ", round(alturamaxV, 2), "m \nEl tiempo que tardó el objeto en llegar a la altura máxima fué de: ", round(tiempomaxV, 2), "s")
+    if input("Desea graficar? s/n: ").lower() == "s":
+        tv = int(tiempomaxV)*2
+        hv = lambda tiempo : velinicialV * tiempo + ((1/2)* GRAVEDAD) * tiempo **2
+        x, y = [], []
+        for i in range(tv + 1):
+            x.append(i)
+            y.append(hv(i))
+
+        x.append(tiempomaxV*2)
+        y.append(0)
+        plt.xlabel("Tiempo (s)")
+        plt.ylabel("Altura (m)")
+        plt.plot(x, y)
+        plt.grid()
+        plt.show()
+
 
 elif TipoTiro == 2:
     def pedirdatosL():
