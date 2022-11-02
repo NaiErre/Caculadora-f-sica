@@ -26,8 +26,8 @@ if TipoTiro == 1:
         alturamaxV = altinicialV + velinicialV * tiempomaxV + 1/2 * GRAVEDAD * tiempomaxV**2
     calculosV()
 
-    print ("La altura máxima fué de: ", round(alturamaxV, 2), "m \nEl tiempo que tardó el objeto en llegar a la altura máxima fué de: ", round(tiempomaxV, 2), "s")
     if input("Desea graficar? s/n: ").lower() == "s":
+        print ("La altura máxima fué de: ", round(alturamaxV, 2), "m \nEl tiempo que tardó el objeto en llegar a la altura máxima fué de: ", round(tiempomaxV, 2), "s")
         tv = int(tiempomaxV)*2
         hv = lambda tiempo : velinicialV * tiempo + ((1/2)* GRAVEDAD) * tiempo **2
         x, y = [], []
@@ -41,7 +41,10 @@ if TipoTiro == 1:
         plt.ylabel("Altura (m)")
         plt.plot(x, y)
         plt.grid()
+        plt.title("ALTURA RESPECTO AL TIEMPO TIRO VERTICAL")
         plt.show()
+    else:
+        print ("La altura máxima fué de: ", round(alturamaxV, 2), "m \nEl tiempo que tardó el objeto en llegar a la altura máxima fué de: ", round(tiempomaxV, 2), "s")
 
 
 elif TipoTiro == 2:
@@ -57,8 +60,8 @@ elif TipoTiro == 2:
         velfinalL = velinicialL + GRAVEDAD + tiempoL
     
     calculosL()
-
     print ("El tiempo que tardó el objeto en caer fué de: ", round(tiempoL, 2), "s \nLa velocidad máxima que alcanzó fué de: ", round(velfinalL, 2), "m/s")
+
 
 elif TipoTiro == 3:
     def pedirdatosO():
@@ -77,8 +80,27 @@ elif TipoTiro == 3:
         alturamaxyO = velyO * tiempomaxO + (1/2) * (GRAVEDAD) * tiempomaxO** 2
 
     calculosO()
-    print ("El tiempo que tarda el objeto en llegar a la altura máx es de: ", round(tiempomaxO, 2), "s \nEl tiempo que tarda el objeto en caer es de: ", round(tiempototO, 2), "s")
-    print ("La distancia recorrida por el objeto fué de: ", round(distanciaxO, 2), "m \nLa altura máxima alcanzada por el objeto fué de: ", round(alturamaxyO, 2), "m")
+    if input("Desea graficar? s/n: ").lower() == "s":
+        print ("El tiempo que tarda el objeto en llegar a la altura máx es de: ", round(tiempomaxO, 2), "s \nEl tiempo que tarda el objeto en caer es de: ", round(tiempototO, 2), "s")
+        print ("La distancia recorrida por el objeto fué de: ", round(distanciaxO, 2), "m \nLa altura máxima alcanzada por el objeto fué de: ", round(alturamaxyO, 2), "m")
+        to = int(tiempomaxO)*2
+        ho = lambda tiempoO : velyO * tiempoO + (1/2) * (GRAVEDAD) * tiempoO** 2
+        x, y = [], []
+        for i in range(to + 1):
+            x.append(i)
+            y.append(ho(i))
+
+        x.append(tiempomaxO*2)
+        y.append(0)
+        plt.xlabel("Tiempo (s)")
+        plt.ylabel("Altura (m)")
+        plt.plot(x, y)
+        plt.grid()
+        plt.title("ALTURA RESPECTO AL TIEMPO TIRO OBLICUO")
+        plt.show()
+    else:
+        print ("El tiempo que tarda el objeto en llegar a la altura máx es de: ", round(tiempomaxO, 2), "s \nEl tiempo que tarda el objeto en caer es de: ", round(tiempototO, 2), "s")
+        print ("La distancia recorrida por el objeto fué de: ", round(distanciaxO, 2), "m \nLa altura máxima alcanzada por el objeto fué de: ", round(alturamaxyO, 2), "m")
 
 elif TipoTiro == 4:
     def pedirdatosH():
